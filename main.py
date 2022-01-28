@@ -11,7 +11,6 @@ from flask import json,Response
 from scipy.stats import chi2_contingency
 app = Flask(__name__)
 txtfile = open("D:/Downloads/DataReader/log_example.txt", "r")
-#Here’s the  frequency function which gives us the counts and percentages of each segment from our crosstab:
 
 @app.route('/logs')
 def logs():
@@ -62,9 +61,9 @@ def logs():
 
         },
         "errors_percentage": {
-            "Main": mainErrors / m,
-            "T1_Measure": t1Errors / t1,
-            "T2_Measure": t2Errors / t2
+            "Main": count.values[0][0] / m,
+            "T1_Measure": count.values[0][1] / t1,
+            "T2_Measure": count.values[0][2] / t2
 
         },
     }
