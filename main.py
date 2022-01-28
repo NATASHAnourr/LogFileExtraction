@@ -7,8 +7,7 @@ import time
 from flask import Flask
 import matplotlib
 
-from flask import json,Response
-from scipy.stats import chi2_contingency
+from flask import json
 app = Flask(__name__)
 txtfile = open("D:/Downloads/DataReader/log_example.txt", "r")
 
@@ -99,9 +98,7 @@ def hist():
     # swap rows and columns
     df=pd.DataFrame.transpose(df)
     print(df)
-    # print((np.array(newArray)[:, 1]),np.array(newArray)[:, 3])
 
-    # pd.crosstab(df[0], df[1], normalize='index').plot.bar(stacked=True)
     fig = px.histogram(df, x=df[0], color=df[0], color_discrete_sequence=["#871fff", "#ffa78c","#0fa07c"])
     fig.show()
 
