@@ -14,7 +14,7 @@ txtfile = open("D:/Downloads/DataReader/log_example.txt", "r")
 @app.route('/logs')
 def logs():
     start = time.time()
-    m,t1,t2,mainErrors,t1Errors,t2Errors = 0,0,0,0,0,0
+    m,t1,t2,mainErrors,t1Errors,t2Errors = 0,0,0
     first_line = str(txtfile.readline())
     first_date=first_line[0:10]
     newArray=[]
@@ -88,13 +88,12 @@ def hist():
                 newArray.append(splitted_array)
 
     # using numpy array to take columns instead of rows
-    a=np.array(newArray)[:, 1]
-    b=np.array(newArray)[:, 2]
-    c=np.array(newArray)[:, 3]
-    d=np.array([a,b,c])
-    columns = 'msgType,module,message'
+    msgType=np.array(newArray)[:, 1]
+    module=np.array(newArray)[:, 2]
+    message=np.array(newArray)[:, 3]
+    threeColumns=np.array([msgType,module,message])
 
-    df = pd.DataFrame(data=d)
+    df = pd.DataFrame(data=threeColumns)
     # swap rows and columns
     df=pd.DataFrame.transpose(df)
     print(df)
